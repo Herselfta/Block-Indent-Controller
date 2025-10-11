@@ -1,9 +1,9 @@
 {
   "id": "block-indent-controller",
   "name": "Block Indent Controller",
-  "version": "1.0.0",
+  "version": "2.0.4",
   "minAppVersion": "0.15.0",
-  "description": "增强的缩进控制插件，支持整体块缩进和引用符号缩进",
+  "description": "增强的缩进控制插件，支持整体块缩进、引用符号缩进、智能粘贴和列表自动延续。v2.0.4：修复空引用行退出机制的优先级问题。",
   "author": "Herta_Herselfta",
   "authorUrl": "",
   "isDesktopOnly": false
