@@ -197,7 +197,7 @@ module.exports = class BlockIndentController extends Plugin {
         const remaining = line.substring(pos);
         
         // 任务列表: - [ ] 或 - [x] 或 - [X]
-        const taskMatch = remaining.match(/^([-*+])\s+\[([xX ])\]\s+/);
+        const taskMatch = remaining.match(/^([-*+])\s+\[([xX ])\](?:\s+|$)/);
         if (taskMatch) {
             listMarker = taskMatch[1];
             listType = 'task';
