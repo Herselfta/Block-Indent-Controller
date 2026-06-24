@@ -586,6 +586,24 @@ module.exports = class BlockIndentController extends Plugin {
      * 行为：移除列表标记，光标留在当前行
      */
     handleEmptyListEnter(editor, cursor, line, parsed) {
+        // 如果是任务列表（有 taskState），并且还没有被去掉，先变成普通无序列表
+        if (parsed.listType === 'task') {
+            const newStructure = {
+                ...parsed,
+                listType: 'unordered',
+                taskState: null
+            };
+            const newLine = this.rebuildLine(newStructure);
+            editor.replaceRange(
+                newLine,
+                { line: cursor.line, ch: 0 },
+                { line: cursor.line, ch: line.length }
+            );
+            editor.setCursor({ line: cursor.line, ch: newLine.length });
+            return;
+        }
+
+        // 否则是普通列表项，直接退出列表（移除 listMarker，保留前缀）
         const prefix = this.extractPrefix(parsed);
         
         editor.replaceRange(
